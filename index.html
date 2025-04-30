@@ -8,6 +8,12 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+  <div class="header">
+    <div class="login-container">
+      <button id="login-btn" class="login-button">登录</button>
+    </div>
+  </div>
+
   <div class="container">
     <h1>测试 Google 登录</h1>
 
@@ -16,7 +22,8 @@
          data-client_id="301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com"
          data-context="signin"
          data-callback="handleCredentialResponse"
-         data-auto_prompt="false">
+         data-auto_prompt="false"
+         data-login_uri="https://your-domain.com/api/auth/google">
     </div>
 
     <div class="g_id_signin"
@@ -25,7 +32,8 @@
          data-theme="outline"
          data-text="sign_in_with"
          data-shape="rectangular"
-         data-logo_alignment="left">
+         data-logo_alignment="left"
+         style="display: none;">
     </div>
 
     <div id="user-info" style="display: none;"></div>

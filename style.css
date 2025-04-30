@@ -1,7 +1,37 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-button {
+  padding: 8px 24px;
+  font-size: 1em;
+  background: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-button:hover {
+  background: #3367d6;
+}
+
 .container {
   background: #fff;
   max-width: 400px;
-  margin: 60px auto 0 auto;
+  margin: 100px auto 0 auto;
   padding: 32px 24px 40px 24px;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);

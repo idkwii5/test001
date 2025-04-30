@@ -1,3 +1,22 @@
+// 初始化 Google 登录
+function initializeGoogleSignIn() {
+  google.accounts.id.initialize({
+    client_id: "301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com",
+    callback: handleCredentialResponse,
+    auto_select: false,
+    cancel_on_tap_outside: true
+  });
+}
+
+// 显示 Google 登录按钮
+function showGoogleSignIn() {
+  google.accounts.id.renderButton(
+    document.querySelector(".g_id_signin"),
+    { theme: "outline", size: "large", text: "sign_in_with", shape: "rectangular" }
+  );
+  document.querySelector(".g_id_signin").style.display = "block";
+}
+
 function handleCredentialResponse(response) {
   if (!response.credential) {
     showError('登录失败，请重试');
@@ -15,6 +34,7 @@ function handleCredentialResponse(response) {
     document.getElementById("user-info").style.display = "block";
     document.querySelector(".g_id_signin").style.display = "none";
     document.getElementById("logout-btn").style.display = "inline-block";
+    document.getElementById("login-btn").style.display = "none";
     document.getElementById("error-message").style.display = "none";
   } catch (error) {
     console.error('登录处理错误:', error);
@@ -39,12 +59,21 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-// 登出逻辑
+// 页面加载完成后的初始化
 window.onload = function() {
+  initializeGoogleSignIn();
+  
+  // 登录按钮点击事件
+  document.getElementById("login-btn").onclick = function() {
+    showGoogleSignIn();
+  };
+  
+  // 登出按钮点击事件
   document.getElementById("logout-btn").onclick = function() {
     document.getElementById("user-info").style.display = "none";
     document.getElementById("user-info").innerHTML = "";
-    document.querySelector(".g_id_signin").style.display = "block";
+    document.querySelector(".g_id_signin").style.display = "none";
+    document.getElementById("login-btn").style.display = "block";
     this.style.display = "none";
     document.getElementById("error-message").style.display = "none";
     // 清除 Google 会话
