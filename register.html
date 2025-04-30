@@ -11,21 +11,43 @@
   <main class="login-main">
     <div class="login-card">
       <h1 class="login-title">Sign up or Login</h1>
+      
+      <!-- Google Identity Services 容器 -->
+      <div id="g_id_onload"
+           data-client_id="301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com"
+           data-context="signin"
+           data-callback="handleCredentialResponse"
+           data-auto_prompt="false">
+      </div>
+      
+      <div class="g_id_signin" 
+           data-type="standard"
+           data-size="large"
+           data-theme="outline"
+           data-text="sign_in_with"
+           data-shape="rectangular"
+           data-logo_alignment="left">
+      </div>
+      
+      <!-- 可选：传统 Google 按钮备用 -->
       <div class="login-divider"><span>or</span></div>
       <div class="login-providers">
-        <button class="provider-btn google" id="google-login-btn"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> Continue with Google</button>
+        <button class="provider-btn google" id="google-login-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> 
+          Continue with Google
+        </button>
       </div>
+      
+      <!-- 用户信息显示 -->
+      <div id="user-info" style="display:none;"></div>
+      
+      <!-- 错误信息显示 -->
+      <div id="error-message" class="error" style="display:none;"></div>
     </div>
     <footer class="login-footer">
       <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
     </footer>
   </main>
-  <script>
-    document.getElementById('google-login-btn').onclick = function(e) {
-      e.preventDefault();
-      window.location.href =
-        'https://accounts.google.com/o/oauth2/v2/auth?client_id=301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com&redirect_uri=https://your-domain.com/auth/callback&response_type=token&scope=openid%20email%20profile';
-    };
-  </script>
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>
