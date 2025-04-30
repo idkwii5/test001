@@ -5,17 +5,27 @@
   <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <div class="header">
     <div class="login-container">
       <button id="login-btn" class="login-button">Login</button>
+      <button id="logout-btn" class="login-button" style="display:none;">Logout</button>
     </div>
   </div>
-  <script>
-    document.getElementById('login-btn').onclick = function() {
-      window.location.href = 'register.html';
-    };
-  </script>
+  
+  <div class="main-content">
+    <!-- Google Sign-In 隐藏容器 -->
+    <div class="g_id_signin" style="display:none;"></div>
+    
+    <!-- 用户信息显示区域 -->
+    <div id="user-info" style="display:none;"></div>
+    
+    <!-- 错误信息显示区域 -->
+    <div id="error-message" class="error" style="display:none;"></div>
+  </div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
