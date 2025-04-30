@@ -14,30 +14,28 @@
     </div>
   </div>
 
-  <div class="container">
-    <!-- Google Sign-In Mount Point -->
-    <div id="g_id_onload"
-         data-client_id="301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com"
-         data-context="signin"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false"
-         data-login_uri="https://your-domain.com/api/auth/google">
-    </div>
-
-    <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-logo_alignment="left"
-         style="display: none;">
-    </div>
-
-    <div id="user-info" style="display: none;"></div>
-    <button id="logout-btn" style="display: none;">Logout</button>
-    <div id="error-message" style="display: none; color: red; margin-top: 10px;"></div>
+  <!-- Google Sign-In Mount Point -->
+  <div id="g_id_onload"
+       data-client_id="301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com"
+       data-context="signin"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false"
+       data-login_uri="https://your-domain.com/api/auth/google">
   </div>
+
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large"
+       data-theme="outline"
+       data-text="sign_in_with"
+       data-shape="rectangular"
+       data-logo_alignment="left"
+       style="display: none;">
+  </div>
+
+  <div id="user-info" style="display: none;"></div>
+  <button id="logout-btn" style="display: none;">Logout</button>
+  <div id="error-message" style="display: none; color: red; margin-top: 10px;"></div>
 
   <script src="script.js"></script>
 </body>
