@@ -1,4 +1,4 @@
-// 初始化 Google 登录
+// Initialize Google Sign-In
 function initializeGoogleSignIn() {
   google.accounts.id.initialize({
     client_id: "301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com",
@@ -8,7 +8,7 @@ function initializeGoogleSignIn() {
   });
 }
 
-// 显示 Google 登录按钮
+// Show Google Sign-In button
 function showGoogleSignIn() {
   google.accounts.id.renderButton(
     document.querySelector(".g_id_signin"),
@@ -19,7 +19,7 @@ function showGoogleSignIn() {
 
 function handleCredentialResponse(response) {
   if (!response.credential) {
-    showError('登录失败，请重试');
+    showError('Login failed, please try again');
     return;
   }
 
@@ -27,9 +27,9 @@ function handleCredentialResponse(response) {
   try {
     const userInfo = parseJwt(jwt);
     document.getElementById("user-info").innerHTML = `
-      <p>欢迎，${userInfo.name}！</p>
-      <p>邮箱：${userInfo.email}</p>
-      <img src="${userInfo.picture}" alt="头像" style="width:80px;border-radius:50%;margin-top:10px;">
+      <p>Welcome, ${userInfo.name}!</p>
+      <p>Email: ${userInfo.email}</p>
+      <img src="${userInfo.picture}" alt="Profile" style="width:80px;border-radius:50%;margin-top:10px;">
     `;
     document.getElementById("user-info").style.display = "block";
     document.querySelector(".g_id_signin").style.display = "none";
@@ -37,19 +37,19 @@ function handleCredentialResponse(response) {
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("error-message").style.display = "none";
   } catch (error) {
-    console.error('登录处理错误:', error);
-    showError('登录处理失败，请重试');
+    console.error('Login processing error:', error);
+    showError('Login processing failed, please try again');
   }
 }
 
-// 显示错误信息
+// Show error message
 function showError(message) {
   const errorDiv = document.getElementById("error-message");
   errorDiv.textContent = message;
   errorDiv.style.display = "block";
 }
 
-// 解码 JWT 函数
+// Decode JWT function
 function parseJwt(token) {
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -59,16 +59,16 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-// 页面加载完成后的初始化
+// Initialize after page load
 window.onload = function() {
   initializeGoogleSignIn();
   
-  // 登录按钮点击事件
+  // Login button click event
   document.getElementById("login-btn").onclick = function() {
     showGoogleSignIn();
   };
   
-  // 登出按钮点击事件
+  // Logout button click event
   document.getElementById("logout-btn").onclick = function() {
     document.getElementById("user-info").style.display = "none";
     document.getElementById("user-info").innerHTML = "";
@@ -76,7 +76,7 @@ window.onload = function() {
     document.getElementById("login-btn").style.display = "block";
     this.style.display = "none";
     document.getElementById("error-message").style.display = "none";
-    // 清除 Google 会话
+    // Clear Google session
     google.accounts.id.disableAutoSelect();
     google.accounts.id.revoke(localStorage.getItem('google_token'), done => {
       localStorage.removeItem('google_token');
