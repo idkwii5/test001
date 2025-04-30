@@ -1,14 +1,32 @@
 function handleCredentialResponse(response) {
+  if (!response.credential) {
+    showError('登录失败，请重试');
+    return;
+  }
+
   const jwt = response.credential;
-  const userInfo = parseJwt(jwt);
-  document.getElementById("user-info").innerHTML = `
-    <p>欢迎，${userInfo.name}！</p>
-    <p>邮箱：${userInfo.email}</p>
-    <img src="${userInfo.picture}" alt="头像" style="width:80px;border-radius:50%;margin-top:10px;">
-  `;
-  document.getElementById("user-info").style.display = "block";
-  document.querySelector(".g_id_signin").style.display = "none";
-  document.getElementById("logout-btn").style.display = "inline-block";
+  try {
+    const userInfo = parseJwt(jwt);
+    document.getElementById("user-info").innerHTML = `
+      <p>欢迎，${userInfo.name}！</p>
+      <p>邮箱：${userInfo.email}</p>
+      <img src="${userInfo.picture}" alt="头像" style="width:80px;border-radius:50%;margin-top:10px;">
+    `;
+    document.getElementById("user-info").style.display = "block";
+    document.querySelector(".g_id_signin").style.display = "none";
+    document.getElementById("logout-btn").style.display = "inline-block";
+    document.getElementById("error-message").style.display = "none";
+  } catch (error) {
+    console.error('登录处理错误:', error);
+    showError('登录处理失败，请重试');
+  }
+}
+
+// 显示错误信息
+function showError(message) {
+  const errorDiv = document.getElementById("error-message");
+  errorDiv.textContent = message;
+  errorDiv.style.display = "block";
 }
 
 // 解码 JWT 函数
@@ -28,7 +46,11 @@ window.onload = function() {
     document.getElementById("user-info").innerHTML = "";
     document.querySelector(".g_id_signin").style.display = "block";
     this.style.display = "none";
-    // 可选：清除 Google 会话
+    document.getElementById("error-message").style.display = "none";
+    // 清除 Google 会话
     google.accounts.id.disableAutoSelect();
+    google.accounts.id.revoke(localStorage.getItem('google_token'), done => {
+      localStorage.removeItem('google_token');
+    });
   };
 };
