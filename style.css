@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 50px;
+  background-color: #f7f7f7;
+}
+
+#g_id_onload, .g_id_signin {
+  margin: 20px auto;
+}
+
+#user-info {
+  margin-top: 30px;
+  font-size: 1.2em;
+  color: #333;
+}
