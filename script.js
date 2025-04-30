@@ -82,4 +82,15 @@ window.onload = function() {
       localStorage.removeItem('google_token');
     });
   };
+
+  // Google 登录按钮跳转
+  var googleBtn = document.getElementById('google-login-btn');
+  if (googleBtn) {
+    googleBtn.onclick = function(e) {
+      e.preventDefault();
+      // 跳转到Google OAuth登录页面（示例client_id和redirect_uri需替换为你的正式值）
+      window.location.href =
+        'https://accounts.google.com/o/oauth2/v2/auth?client_id=301486741518-pcsrdrp9jl5p67vah5n5ht7aa8no1nv6.apps.googleusercontent.com&redirect_uri=https://your-domain.com/auth/callback&response_type=token&scope=openid%20email%20profile';
+    };
+  }
 };
