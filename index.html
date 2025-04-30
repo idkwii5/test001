@@ -2,30 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <div class="header"></div>
-  <main class="login-main">
-    <div class="login-card">
-      <h1 class="login-title">Welcome back</h1>
-      <form id="email-login-form">
-        <input type="email" id="email" class="login-input" placeholder="Email address" required />
-        <button type="submit" class="login-continue">Continue</button>
-      </form>
-      <div class="login-register">Don't have an account? <a href="#" id="register-link">Sign up</a></div>
-      <div class="login-divider"><span>or</span></div>
-      <div class="login-providers">
-        <button class="provider-btn google" id="google-login-btn"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> Continue with Google</button>
-      </div>
+  <div class="header">
+    <div class="login-container">
+      <button id="login-btn" class="login-button">Login</button>
     </div>
-    <footer class="login-footer">
-      <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-    </footer>
-  </main>
-  <script src="script.js"></script>
+  </div>
+  <script>
+    document.getElementById('login-btn').onclick = function() {
+      window.location.href = 'register.html';
+    };
+  </script>
 </body>
 </html>
