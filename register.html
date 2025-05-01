@@ -5,6 +5,7 @@
   <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
@@ -48,6 +49,40 @@
       <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
     </footer>
   </main>
-  <script src="script.js"></script>
+  <script>
+    // 初始化 Supabase 客户端
+    const supabaseUrl = 'YOUR_SUPABASE_URL'  // 替换为你的 Project URL
+    const supabaseKey = 'YOUR_SUPABASE_KEY'  // 替换为你的 anon public key
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey)
+
+    // Google 登录处理
+    document.getElementById('google-login-btn').onclick = async function(e) {
+      e.preventDefault();
+      try {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: 'https://idkwii5.github.io/test001/'
+          }
+        })
+        if (error) throw error
+      } catch (error) {
+        console.error('登录失败:', error)
+        alert('登录失败，请重试')
+      }
+    }
+
+    // 检查用户是否已登录
+    async function checkUser() {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        // 用户已登录，可以跳转到主页
+        window.location.href = 'https://idkwii5.github.io/test001/'
+      }
+    }
+
+    // 页面加载时检查登录状态
+    checkUser()
+  </script>
 </body>
 </html>
