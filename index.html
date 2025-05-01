@@ -2,30 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="header">
-    <div class="login-container">
-      <button id="login-btn" class="login-button">Login</button>
-      <button id="logout-btn" class="login-button" style="display:none;">Logout</button>
+  <main class="login-main">
+    <div class="login-card">
+      <h1 class="login-title">Sign up or Login</h1>
+      <div class="login-divider"><span>or</span></div>
+      <div class="login-providers">
+        <button class="provider-btn google" id="google-login-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> 
+          Continue with Google
+        </button>
+      </div>
     </div>
-  </div>
-  
-  <div class="main-content">
-    <!-- Google Sign-In 隐藏容器 -->
-    <div class="g_id_signin" style="display:none;"></div>
-    
-    <!-- 用户信息显示区域 -->
-    <div id="user-info" style="display:none;"></div>
-    
-    <!-- 错误信息显示区域 -->
-    <div id="error-message" class="error" style="display:none;"></div>
-  </div>
-  
-  <script src="script.js"></script>
+    <footer class="login-footer">
+      <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+    </footer>
+  </main>
+  <script>
+    // 初始化 Supabase 客户端
+    const supabaseUrl = 'https://himmafxcmglkpnrujzci.supabase.co'
+    const supabaseKey = '你的anon key'
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey)
+
+    // Google 登录处理
+    document.getElementById('google-login-btn').onclick = async function(e) {
+      e.preventDefault();
+      try {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: 'https://idkwii5.github.io/test001/'
+          }
+        })
+        if (error) throw error
+      } catch (error) {
+        console.error('登录失败:', error)
+        alert('登录失败，请重试')
+      }
+    }
+
+    // 检查用户是否已登录
+    async function checkUser() {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        // 用户已登录，可以跳转到主页
+        window.location.href = 'https://idkwii5.github.io/test001/'
+      }
+    }
+
+    // 页面加载时检查登录状态
+    checkUser()
+  </script>
 </body>
 </html>
