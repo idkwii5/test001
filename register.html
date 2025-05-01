@@ -62,7 +62,7 @@
         const { data, error } = await supabase.auth.signInWithOAuth({
           provider: 'google',
           options: {
-            redirectTo: 'https://idkwii5.github.io/test001/'
+            redirectTo: 'https://himmafxcmglkpnrujzci.supabase.co/auth/v1/callback'
           }
         })
         if (error) throw error
