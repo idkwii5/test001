@@ -5,6 +5,7 @@
   <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <!-- 一定要先加载 supabase-js -->
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -23,30 +24,29 @@
       <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
     </footer>
   </main>
+  <!-- JS 代码必须放在 supabase-js 加载之后，且 supabase 初始化之后 -->
   <script>
-    // 一定要先初始化 supabase
+    // 1. 先初始化 supabase
     const supabaseUrl = 'https://himmafxcmglkpnrujzci.supabase.co'
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbW1hZnhjbWdsa3BucnVqemNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTM4ODAsImV4cCI6MjA2MTY2OTg4MH0.CUP3Bf46hy-C6Wo5YzhRVOYCc7jwxohkhAi1hPqBk8k'
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // 事件绑定写在初始化之后
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('google-login-btn').onclick = async function(e) {
-        e.preventDefault();
-        try {
-          const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              redirectTo: 'https://idkwii5.github.io/test001/'
-            }
-          });
-          if (error) throw error;
-        } catch (error) {
-          console.error('登录失败:', error);
-          alert('登录失败，请重试');
-        }
+    // 2. 事件绑定写在初始化之后
+    document.getElementById('google-login-btn').onclick = async function(e) {
+      e.preventDefault();
+      try {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: 'https://idkwii5.github.io/test001/'
+          }
+        });
+        if (error) throw error;
+      } catch (error) {
+        console.error('登录失败:', error);
+        alert('登录失败，请重试');
       }
-    });
+    }
   </script>
 </body>
 </html>
