@@ -5,17 +5,38 @@
   <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <!-- 加载 Supabase JS 库 -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <div class="header">
-    <div class="login-container">
+    <div class="logo">Your App</div>
+    <div class="login-container" style="margin-left: auto; margin-right: 24px;">
       <button id="login-btn" class="login-button">Login</button>
+      <button id="logout-btn" style="display: none;" class="login-button">Logout</button>
     </div>
   </div>
+  
+  <main style="padding: 40px; text-align: center;">
+    <h1>Welcome to Your App</h1>
+    <p>A secure application with Google Authentication</p>
+    
+    <!-- 用户信息展示区域 -->
+    <div id="user-info" style="display: none; margin-top: 40px; padding: 20px; background: #f9f9f9; border-radius: 12px; max-width: 500px; margin-left: auto; margin-right: auto;"></div>
+  </main>
+  
+  <!-- 加载 Supabase 脚本 -->
+  <script src="supabase-auth.js"></script>
   <script>
-    document.getElementById('login-btn').onclick = function() {
-      window.location.href = 'register.html';
-    };
+    // 页面特定的代码
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginBtn = document.getElementById('login-btn');
+      if (loginBtn) {
+        loginBtn.onclick = function() {
+          window.location.href = 'register.html';
+        };
+      }
+    });
   </script>
 </body>
 </html>
