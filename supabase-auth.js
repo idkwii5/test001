@@ -2,7 +2,7 @@
 const SUPABASE_CONFIG = {
   url: 'https://himmafxcmglkpnrujzci.supabase.co',
   key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbW1hZnhjbWdsa3BucnVqemNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTM4ODAsImV4cCI6MjA2MTY2OTg4MH0.CUP3Bf46hy-C6Wo5YzhRVOYCc7jwxohkhAi1hPqBk8k',
-  redirectUrl: 'https://idkwii5.github.io/test001/' // 修改为您的实际回调URL
+  redirectUrl: 'https://himmafxcmglkpnrujzci.supabase.co/auth/v1/callback' // 修改为您的实际回调URL
 };
 
 // 初始化 Supabase 客户端
