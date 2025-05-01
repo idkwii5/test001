@@ -2,51 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
+  <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <main class="login-main">
-    <div class="login-card">
-      <h1 class="login-title">Sign up or Login</h1>
-      <div class="login-divider"><span>or</span></div>
-      <div class="login-providers">
-        <button class="provider-btn google" id="google-login-btn">
-          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> 
-          Continue with Google
-        </button>
-      </div>
+  <div class="header">
+    <div class="login-container">
+      <button id="login-btn" class="login-button">Login</button>
     </div>
-    <footer class="login-footer">
-      <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-    </footer>
-  </main>
+  </div>
   <script>
-    // 替换为你的 Supabase 项目参数
-    const supabaseUrl = 'https://himmafxcmglkpnrujzci.supabase.co'
-    const supabaseKey = '你的anon key'
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey)
-
-    // 等待页面加载完再绑定事件
-    window.onload = function() {
-      document.getElementById('google-login-btn').onclick = async function(e) {
-        e.preventDefault();
-        try {
-          const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              redirectTo: 'https://idkwii5.github.io/test001/'
-            }
-          })
-          if (error) throw error
-        } catch (error) {
-          console.error('登录失败:', error)
-          alert('登录失败，请重试')
-        }
-      }
-    }
+    document.getElementById('login-btn').onclick = function() {
+      window.location.href = 'register.html';
+    };
   </script>
 </body>
 </html>
