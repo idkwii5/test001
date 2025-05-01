@@ -24,39 +24,29 @@
     </footer>
   </main>
   <script>
-    // 初始化 Supabase 客户端
+    // 替换为你的 Supabase 项目参数
     const supabaseUrl = 'https://himmafxcmglkpnrujzci.supabase.co'
-    const supabaseKey = '你的anon key'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbW1hZnhjbWdsa3BucnVqemNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTM4ODAsImV4cCI6MjA2MTY2OTg4MH0.CUP3Bf46hy-C6Wo5YzhRVOYCc7jwxohkhAi1hPqBk8k'
     const supabase = supabase.createClient(supabaseUrl, supabaseKey)
 
-    // Google 登录处理
-    document.getElementById('google-login-btn').onclick = async function(e) {
-      e.preventDefault();
-      try {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: 'https://idkwii5.github.io/test001/'
-          }
-        })
-        if (error) throw error
-      } catch (error) {
-        console.error('登录失败:', error)
-        alert('登录失败，请重试')
+    // 等待页面加载完再绑定事件
+    window.onload = function() {
+      document.getElementById('google-login-btn').onclick = async function(e) {
+        e.preventDefault();
+        try {
+          const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: 'https://idkwii5.github.io/test001/'
+            }
+          })
+          if (error) throw error
+        } catch (error) {
+          console.error('登录失败:', error)
+          alert('登录失败，请重试')
+        }
       }
     }
-
-    // 检查用户是否已登录
-    async function checkUser() {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        // 用户已登录，可以跳转到主页
-        window.location.href = 'https://idkwii5.github.io/test001/'
-      }
-    }
-
-    // 页面加载时检查登录状态
-    checkUser()
   </script>
 </body>
 </html>
