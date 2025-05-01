@@ -24,12 +24,12 @@
     </footer>
   </main>
   <script>
-    // 一定要用你自己的 anon key
+    // 一定要先初始化 supabase
     const supabaseUrl = 'https://himmafxcmglkpnrujzci.supabase.co'
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbW1hZnhjbWdsa3BucnVqemNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTM4ODAsImV4cCI6MjA2MTY2OTg4MH0.CUP3Bf46hy-C6Wo5YzhRVOYCc7jwxohkhAi1hPqBk8k'
+    const supabaseKey = '你的anon key'
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // 用DOMContentLoaded确保按钮已渲染
+    // 事件绑定写在初始化之后
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('google-login-btn').onclick = async function(e) {
         e.preventDefault();
@@ -40,4 +40,13 @@
               redirectTo: 'https://idkwii5.github.io/test001/'
             }
           });
-          if
+          if (error) throw error;
+        } catch (error) {
+          console.error('登录失败:', error);
+          alert('登录失败，请重试');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
