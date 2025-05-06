@@ -2,11 +2,12 @@
 const SUPABASE_CONFIG = {
   url: 'https://himmafxcmglkpnrujzci.supabase.co',
   key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbW1hZnhjbWdsa3BucnVqemNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTM4ODAsImV4cCI6MjA2MTY2OTg4MH0.CUP3Bf46hy-C6Wo5YzhRVOYCc7jwxohkhAi1hPqBk8k',
-  redirectUrl: 'https://idkwii5.github.io/test001/auth/v1/callback' // 修改为您的实际回调URL
+  // 修改为匹配 vercel.json 路由的回调 URL
+  redirectUrl: window.location.origin + '/auth/callback'
 };
 
-// 初始化 Supabase 客户端
-const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+// 初始化 Supabase 客户端 - 修复了客户端创建方法
+const supabase = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
 // 页面加载完成时初始化
 document.addEventListener('DOMContentLoaded', async function() {
@@ -73,6 +74,10 @@ async function checkAndRestoreSession() {
   if (session) {
     console.log('Found existing session');
     displayUserInfo(session.user);
+    // 如果在登录页，登录成功后重定向到首页
+    if (window.location.pathname.includes('register.html')) {
+      window.location.href = 'index.html';
+    }
   }
 }
 
@@ -99,6 +104,11 @@ async function handleRedirectSession() {
       // 清除URL中的参数，以防止刷新时重复处理
       if (window.history && window.history.replaceState) {
         window.history.replaceState({}, document.title, window.location.origin + window.location.pathname);
+      }
+      
+      // 登录成功后重定向到首页
+      if (window.location.pathname.includes('register.html') || window.location.pathname.includes('auth/callback')) {
+        window.location.href = '/index.html';
       }
     }
   }
