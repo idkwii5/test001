@@ -7,7 +7,7 @@ const SUPABASE_CONFIG = {
 };
 
 // 初始化 Supabase 客户端 - 修复了客户端创建方法
-const supabase = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
+const supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.key);
 
 // 页面加载完成时初始化
 document.addEventListener('DOMContentLoaded', async function() {
