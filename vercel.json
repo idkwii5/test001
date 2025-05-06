@@ -20,6 +20,10 @@
       "dest": "/index.html"
     },
     {
+      "src": "/auth/v1/callback",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
