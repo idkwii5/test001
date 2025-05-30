@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{DOMAIN}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLPGEXLP0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GHLPGEXLP0');
+</script>
+<style>
+  body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(180deg, #b3d8fd 0%, #eaf6ff 60%, #fafdff 100%);
+    color: #23272f;
+    margin: 0;
+  }
+  .main-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .main-title {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #0052cc;
+    margin-bottom: 18px;
+    text-align: center;
+    text-shadow: 0 4px 24px rgba(24,119,255,0.08);
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+  .subtitle {
+    font-size: 20px;
+    color: #23272f;
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .domain-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #1877ff;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 20px 0 28px 0;
+    box-shadow: 0 2px 12px rgba(24,119,255,0.10);
+    border: none;
+    transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+  }
+  .domain-btn:hover {
+    background: #1256b8;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(24,119,255,0.13);
+  }
+  .desc {
+    font-size: 16px;
+    color: #3a3a3a;
+    margin-bottom: 36px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .tags {
+    color: #1877ff;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .footer {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #b0b3bb;
+    margin-top: 60px;
+    padding: 24px 0 12px 0;
+    line-height: 1.7;
+  }
+  .footer .highlight {
+    color: #b0b3bb;
+    font-weight: 600;
+  }
+  .contact {
+    color: #444d5c;
+    font-size: 14px;
+    margin: 8px 0 0 0;
+    text-align: center;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 4px;
+    margin-left: 2px;
+  }
+  .copyable {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .copyable.copied {
+    color: #1877ff;
+  }
+  @media (max-width: 700px) {
+    .main-wrap { padding: 32px 0 0 0; }
+    .main-title { font-size: 38px; }
+    .subtitle { font-size: 18px; }
+    .domain-btn { font-size: 16px; padding: 13px 20px; }
+    .desc { font-size: 14px; }
+    .tags { font-size: 14px; }
+    .footer { font-size: 11px; }
+    .contact { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="main-wrap">
+    <div class="main-title">{{DOMAIN}}</div>
+    <div class="subtitle">{{SUBTITLE}}</div>
+    <div class="desc">{{DESC1}}</div>
+    <a class="domain-btn" href="{{BUTTON_URL}}">获取 {{DOMAIN}}</a>
+    <div class="tags">{{TAGS}}</div>
+    <div class="desc">{{DESC2}}</div>
+    <div class="contact">
+      <img src="qq.png" alt="QQ" class="icon">
+      <img src="wechat.png" alt="微信" class="icon">
+      <span id="copyQQ" class="copyable">{{QQ}}</span>&nbsp;&nbsp;
+      Email: {{EMAIL}}
+    </div>
+    <div class="footer">
+      © 2025 <span class="highlight">{{DOMAIN}}</span><br>
+      免责声明与法律声明：{{DOMAIN}} 是通用、描述性质的 .com 域名，多重含义。本站为非商业性、建设中、单独自主的网站，与任何公众人物、公司、组织、品牌、商品、软件、服务、商标无关，不提供任何商品或服务。如果您正在搜寻名称中含有 {{DOMAIN}} 或与其相关、相近的任何商业信息，那么您就错误地访问了此网站。<br>
+      Disclaimer: {{DOMAIN}} is a generic and descriptive .com domain name with multiple meanings. It is a non-commercial, under-construction, and independent website, not affiliated with any public figure, company, organization, brand, commodity, software, or service. No goods or services are offered here. If you are searching for any business with {{DOMAIN}} in its name or something related or similar to it, you have reached this site in error.
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var qqSpan = document.getElementById('copyQQ');
+      if (qqSpan) {
+        qqSpan.addEventListener('click', function() {
+          var text = qqSpan.textContent;
+          navigator.clipboard.writeText(text).then(function() {
+            qqSpan.classList.add('copied');
+            qqSpan.textContent = '已复制';
+            setTimeout(function() {
+              qqSpan.classList.remove('copied');
+              qqSpan.textContent = text;
+            }, 1200);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
